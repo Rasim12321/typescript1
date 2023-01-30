@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
+
+import { EventsExample } from './components/EventsExample';
+import { UsersPage } from './components/UsersPage';
+import { TodosPage } from './components/TodosPage';
+import Rest from './components/Rest';
+import { UserItemPage } from './components/UserItemPage';
+import { TodoItemPage } from './components/TodoItemPage';
+
 import './App.css';
 
-function App() {
+
+const App: React.FC = () => {
+console.log()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <div>
+          <NavLink className={'m-3'} to={'/users'}>users</NavLink>
+          <NavLink className={'m-3'} to={'/todos'}>todos</NavLink>
+          <NavLink className={'m-3'} to={'/events'}>events</NavLink>
+          <NavLink className={'m-3'} to={'/rest'}>events</NavLink>
+        </div>
+        <Routes>
+          <Route path='/users' element={<UsersPage/>}> </Route>
+          <Route path='/users/:id' element={<UserItemPage/>}> </Route>
+
+          <Route path ='/todos' element={<TodosPage />}> </Route>
+          <Route path ='/todos/:id' element={<TodoItemPage />}> </Route>
+
+          <Route path ='/events' element={<EventsExample />}> </Route>
+          <Route path ='/rest' element={<Rest />}> </Route>
+        </Routes>
+
+      </BrowserRouter>
+    </>
   );
 }
 
